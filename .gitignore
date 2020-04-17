@@ -20,3 +20,9 @@ MessagePackPerformance/MessagePackV2/bin/Debug/netcoreapp3.1/
 MessagePackPerformance/MessagePackV2/obj/Debug/netcoreapp3.1/
 
 MessagePackPerformance/MessagePackV2/obj/
+
+MessagePackPerformance/MessagePackV1/bin/Release/netcoreapp3.1/
+
+MessagePackPerformance/MessagePackV2/bin/Release/netcoreapp3.1/
+
+MessagePackPerformance/Shared/bin/Release/netstandard2.0/

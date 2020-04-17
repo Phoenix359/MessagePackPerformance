@@ -1,4 +1,5 @@
-﻿using MessagePack.Resolvers;
+﻿using MessagePack;
+using MessagePack.Resolvers;
 using System.Collections.Generic;
 
 namespace MessagePackV2
@@ -9,14 +10,20 @@ namespace MessagePackV2
         {
             StaticCompositeResolver.Instance.Register
             (
+                NativeDateTimeResolver.Instance,                
                 NativeGuidResolver.Instance,
                 NativeDecimalResolver.Instance,
-                StandardResolver.Instance
+                TypelessObjectResolver.Instance,
+                ContractlessStandardResolver.Instance
             );
-
-            MessagePack.MessagePackSerializer.DefaultOptions = MessagePack.MessagePackSerializerOptions.Standard.WithResolver(StaticCompositeResolver.Instance);
+            MessagePackSerializer.DefaultOptions = MessagePackSerializerOptions.Standard
+                .WithResolver(StaticCompositeResolver.Instance)
+                .WithCompression(MessagePackCompression.Lz4BlockArray);
 
             var dataList = FileReader.GetObjectFromBinaryFile<List<Data>>("TestSet");
+            FileWriter.SaveDataAsBinaryFile(dataList, "TestSet_V2_output");
+
+            dataList = FileReader.GetObjectFromBinaryFile<List<Data>>("TestSet");
             FileWriter.SaveDataAsBinaryFile(dataList, "TestSet_V2_output");
         }
     }

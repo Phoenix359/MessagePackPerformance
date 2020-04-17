@@ -8,6 +8,9 @@ namespace MessagePackV1
         {
             var dataList = FileReader.GetObjectFromBinaryFile<List<Data>>("TestSet");
             FileWriter.SaveDataAsBinaryFile(dataList, "TestSet_V1_output");
+
+            dataList = FileReader.GetObjectFromBinaryFile<List<Data>>("TestSet");
+            FileWriter.SaveDataAsBinaryFile(dataList, "TestSet_V1_output");
         }
     }
 }
